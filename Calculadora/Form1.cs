@@ -98,19 +98,55 @@ namespace Calculadora
         {
             AsignarOperacion("/");
         }
+        private void btnIgual_Click(object sender, EventArgs e)
+        {
+            CalcularResultado();
+        }
         #endregion
 
         #region MetodosPrivados
         private void PonerNroTextBox(string nro)
         {
-            txtbNro.Text = txtbNro.Text + nro;
-            NumeroIngresado = Convert.ToDecimal(txtbNro.Text);
+            txtbNro.Text = txtbNro.Text + nro;            
         }
         private void AsignarOperacion(string op)
         {
-            operacion = op;
-            txtbNro.Text=string.Empty;
+            operacion = op;            
+            try
+            {
+                NumeroIngresado = Convert.ToDecimal(txtbNro.Text);
+            }
+            catch (Exception)
+            {
+            }
+            txtbNro.Text = string.Empty;
+
+
+        }
+
+        private void CalcularResultado()
+        {
+            try
+            {
+                if (operacion == "+")
+                { 
+                    Resultado=NumeroIngresado+Convert.ToDecimal(txtbNro.Text);  
+                }
+                if (operacion == "-")
+                {
+                    Resultado = NumeroIngresado - Convert.ToDecimal(txtbNro.Text);
+                }
+
+                txtbNro.Text=Resultado.ToString();
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show("Ocurrio error intente nuevamente:" + Environment.NewLine + ex.Message);
+            }
         }
         #endregion
+
+
     }
 }
