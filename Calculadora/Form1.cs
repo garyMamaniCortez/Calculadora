@@ -75,6 +75,7 @@ namespace Calculadora
             txtbNro.Text = string.Empty;
             operacion = string.Empty;
             NumeroIngresado = 0;
+            Resultado = 0;
         }
 
         private void btnSumar_Click(object sender, EventArgs e)
@@ -136,8 +137,16 @@ namespace Calculadora
                 {
                     Resultado = NumeroIngresado - Convert.ToDecimal(txtbNro.Text);
                 }
-
-                txtbNro.Text=Resultado.ToString();
+                if (operacion == "*")
+                {
+                    Resultado = NumeroIngresado * Convert.ToDecimal(txtbNro.Text);
+                }
+                if (operacion == "/")
+                {
+                    Resultado = NumeroIngresado / Convert.ToDecimal(txtbNro.Text);
+                }
+                txtbNro.Text = Resultado.ToString();
+                NumeroIngresado = Resultado;
             }
             catch (Exception ex)
             {
